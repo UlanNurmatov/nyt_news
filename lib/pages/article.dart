@@ -53,25 +53,19 @@ class ArticleDetails extends StatelessWidget {
                 SizedBox(
                   width: 5,
                 ),
-                Expanded(
-                  child: Text(
-                    args.article.geo_facet.isNotEmpty
-                        ? args.article.geo_facet[0].toUpperCase()
-                        : args.article.section.toUpperCase(),
-                    style: TextStyle(fontSize: 13),
-                  ),
+                Text(
+                  args.article.geo_facet.isNotEmpty
+                      ? args.article.geo_facet[0].toUpperCase()
+                      : args.article.section.toUpperCase(),
+                  style: TextStyle(fontSize: 13),
                 ),
                 args.article.subsection != '' ? Text(' - ') : Text(''),
-                Expanded(
-                  child: Text(args.article.subsection.toUpperCase(),
-                      style: TextStyle(fontSize: 13)),
-                ),
+                Text(args.article.subsection.toUpperCase(),
+                    style: TextStyle(fontSize: 13)),
                 Spacer(),
-                Expanded(
-                  child: Text(
-                    getDate(args.article.published_date).toUpperCase(),
-                    style: TextStyle(fontSize: 13.0),
-                  ),
+                Text(
+                  getDate(args.article.published_date).toUpperCase(),
+                  style: TextStyle(fontSize: 13.0),
                 )
               ],
             ),
@@ -80,7 +74,7 @@ class ArticleDetails extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             padding: EdgeInsets.only(left: 5.0),
             child: Row(
-              children: [Expanded(child: Text(args.article.byline))],
+              children: [Text(args.article.byline)],
             ),
           ),
           Container(
