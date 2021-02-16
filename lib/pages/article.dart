@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:nyt_news/utils/articleArguments.dart';
-import 'package:nyt_news/widgets/androidAppBar.dart';
 
 class ArticleDetails extends StatelessWidget {
   static const routeName = '/articleScreen';
@@ -25,7 +24,14 @@ class ArticleDetails extends StatelessWidget {
         ? CupertinoNavigationBar(
             middle: Text(args.article.item_type.toUpperCase()),
           )
-        : AndroidAppBar(title: 'Article');
+        : AppBar(
+            iconTheme: IconThemeData(color: Colors.black),
+            backgroundColor: Colors.white,
+            title: Text(
+              args.article.item_type.toUpperCase(),
+              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            ),
+          );
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -47,19 +53,25 @@ class ArticleDetails extends StatelessWidget {
                 SizedBox(
                   width: 5,
                 ),
-                Text(
-                  args.article.geo_facet.isNotEmpty
-                      ? args.article.geo_facet[0].toUpperCase()
-                      : args.article.section.toUpperCase(),
-                  style: TextStyle(fontSize: 13),
+                Expanded(
+                  child: Text(
+                    args.article.geo_facet.isNotEmpty
+                        ? args.article.geo_facet[0].toUpperCase()
+                        : args.article.section.toUpperCase(),
+                    style: TextStyle(fontSize: 13),
+                  ),
                 ),
                 args.article.subsection != '' ? Text(' - ') : Text(''),
-                Text(args.article.subsection.toUpperCase(),
-                    style: TextStyle(fontSize: 13)),
+                Expanded(
+                  child: Text(args.article.subsection.toUpperCase(),
+                      style: TextStyle(fontSize: 13)),
+                ),
                 Spacer(),
-                Text(
-                  getDate(args.article.published_date).toUpperCase(),
-                  style: TextStyle(fontSize: 13.0),
+                Expanded(
+                  child: Text(
+                    getDate(args.article.published_date).toUpperCase(),
+                    style: TextStyle(fontSize: 13.0),
+                  ),
                 )
               ],
             ),
@@ -68,7 +80,7 @@ class ArticleDetails extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             padding: EdgeInsets.only(left: 5.0),
             child: Row(
-              children: [Text(args.article.byline)],
+              children: [Expanded(child: Text(args.article.byline))],
             ),
           ),
           Container(

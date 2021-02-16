@@ -25,7 +25,7 @@ class NewsBlocListener extends StatelessWidget {
         return Container();
       } else if (state is HomepagenewsLoading) {
         return Platform.isAndroid
-            ? CircularProgressIndicator()
+            ? Center(child: CircularProgressIndicator())
             : Center(child: CupertinoActivityIndicator());
       } else if (state is HomepagenewsNotLoaded) {
         return Padding(
